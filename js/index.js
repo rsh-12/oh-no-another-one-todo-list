@@ -118,7 +118,6 @@ function deleteTask(btn) {
     refresh();
 }
 
-
 function validateInput(input) {
     BTN_ADD.disabled = input.value.trim().length < 3;
 }
@@ -139,4 +138,6 @@ function isTaskDone(checkbox) {
         title.classList.remove('checked');
         localStorage.setItem(id, title.textContent);
     }
+
+    count();
 }
