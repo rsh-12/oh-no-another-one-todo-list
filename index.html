@@ -10,21 +10,25 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
     <script src="./js/index.js"></script>
+    <script src="https://kit.fontawesome.com/f2cc80cc35.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
 <div class="container">
-    <h1 style="text-align: center">Tasks</h1>
+    <br>
+
+    <h1 style="text-align: center">TODO</h1>
     <div>Total tasks: <span id="span__total"></span></div>
 
     <label>Title
-        <input id="input__title" type="text">
+        <input onkeyup="validateInput(this)"
+                autofocus id="input__title" type="text" placeholder="Press Enter to add a new task...">
     </label>
     <br>
     <br>
-    <button class="btn btn-primary" onclick="saveTask()">new</button>
-    <button class="btn btn-danger" onclick="clearStorage()">clear</button>
+    <button disabled="disabled" id="btn__add" class="btn btn-primary btn__event" onclick="saveTask()"><i class="fas fa-plus"></i></button>
+    <button id="btn__clear" class="btn btn-danger btn__event" onclick="clearStorage()"><i class="fas fa-snowplow"></i></button>
 
     <br><br>
     <br><br>
