@@ -27,3 +27,58 @@
 ul {
     list-style: none;
 }
+
+.title {
+    color: gray;
+    font-size: 14px;
+}
+
+.tasks_container {
+    margin-top: 50px;
+    padding: 10px;
+}
+
+.wrapper {
+    margin: 50px;
+    padding: 20px;
+    min-height: 500px;
+    border: 1px solid #eeeeee;
+    -webkit-box-shadow: 3px 0 35px 10px rgba(208, 208, 208, 0.44);
+    box-shadow: 3px 0 35px 10px rgba(208, 208, 208, 0.44);
+    border-radius: 10px;
+}
+
+.buttons {
+    margin-top: 15px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #646464;
+    font-family: "DejaVu Sans Mono ", serif;
+}
+
+@media (min-width: 481px) and (max-width: 767px) {
+
+    .span__title {
+        font-size: 13px;
+    }
+
+    .btn {
+        height: 45px;
+        width: 45px;
+    }
+
+}
+
+@media (min-width: 0px) and (max-width: 480px) {
+    .span__title {
+        font-size: 12px;
+    }
+
+    .btn {
+        height: 43px;
+        width: 43px;
+    }
+}
