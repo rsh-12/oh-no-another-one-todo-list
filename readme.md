@@ -1,3 +1,3 @@
 Todo list
 
--[ ] make todo list
+- [ ] make todo list
