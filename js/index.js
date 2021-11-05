@@ -1,17 +1,29 @@
+// global tags
 let UL;
 let INPUT;
+let BTN_ADD;
 
+// initialization
 window.onload = () => {
-    UL = document.getElementById("ul__tasks");
-    INPUT = document.getElementById("input__title");
+    initTags();
 
     initUl();
     refresh();
 
+    INPUT.addEventListener('keyup', (e) => {
+        if (e.key === 'Enter' && BTN_ADD.disabled === false) saveTask();
+    });
+
+}
+
+function initTags() {
+    UL = document.getElementById("ul__tasks");
+    INPUT = document.getElementById("input__title");
+    BTN_ADD = document.getElementById('btn__add');
 }
 
 function refresh() {
-    count();
+    document.getElementById('btn__clear').disabled = count() === 0;
     clearInput();
 }
 
@@ -19,10 +31,11 @@ const template =
     `<li>
         <div class="d-flex justify-content-between">
             <p>
+            <input id="input__checkbox" onclick="isTaskDone(this)" type="checkbox">
             <span class="span__title">Task 1</span>
-            <span>(12-09-2021)</span>
+            <span class="span__date-time"></span>
             </p>
-             <button onclick="deleteTask(this)" class="btn btn-warning" id="btn__event">Delete</button>
+             <button onclick="deleteTask(this)" class="btn btn-warning btn__event" id="btn__delete"><i class="fas fa-trash-alt"></i></button>
             </div>
             <br>
     </li>`
@@ -45,8 +58,8 @@ function addTask(id, title) {
         .childNodes[1];
 
     let dateTime = div.id.split("T");
-    elements.childNodes[1].innerHTML = title
-    elements.childNodes[3].innerHTML = `${dateTime[0]} ${(dateTime[1])
+    elements.childNodes[3].innerHTML = title
+    elements.childNodes[5].innerHTML = `${dateTime[0]} ${(dateTime[1])
         .split(":")
         .slice(0, 3).join(':')}`
 
@@ -69,9 +82,11 @@ function saveTask() {
 }
 
 function clearStorage() {
-    UL.innerHTML = "";
-    localStorage.clear();
-    refresh();
+    if (confirm('Are you sure you want to delete all items?')) {
+        UL.innerHTML = "";
+        localStorage.clear();
+        refresh();
+    }
 }
 
 function dateTime() {
@@ -88,10 +103,12 @@ function currentDateTime() {
 
 function clearInput() {
     INPUT.value = '';
+    BTN_ADD.disabled = true;
 }
 
 function count() {
-    document.getElementById("span__total").innerHTML = localStorage.length.toString();
+    const total = document.getElementById("span__total").innerHTML = localStorage.length.toString();
+    return +total;
 }
 
 function deleteTask(btn) {
@@ -99,4 +116,27 @@ function deleteTask(btn) {
     localStorage.removeItem(id);
     document.getElementById(id).remove()
     refresh();
+}
+
+
+function validateInput(input) {
+    BTN_ADD.disabled = input.value.trim().length < 3;
+}
+
+function isTaskDone(checkbox) {
+    const id = checkbox
+        .parentElement
+        .parentElement
+        .parentElement
+        .parentElement.id;
+
+    let title = checkbox.parentElement.childNodes[3];
+
+    if (checkbox.checked) {
+        title.classList.add('checked');
+        localStorage.removeItem(id);
+    } else {
+        title.classList.remove('checked');
+        localStorage.setItem(id, title.textContent);
+    }
 }
