@@ -1,0 +1,29 @@
+.span__title {
+    line-break: anywhere;
+}
+
+.span__date-time {
+    line-break: revert;
+    color: #8f8a8a;
+    font-size: 13px;
+    padding-left: 20px;
+}
+
+.btn__event {
+    height: 50px;
+    width: 50px;
+}
+
+::placeholder {
+    color: #494848;
+    font-size: 12px;
+}
+
+.checked {
+    color: gray;
+    text-decoration: line-through;
+}
+
+ul {
+    list-style: none;
+}
