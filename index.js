@@ -29,10 +29,12 @@ function count() {
 
 function addTask() {
     const li = document.createElement("li");
-    li.innerHTML = "newTask";
-    localStorage.setItem((id++).toString(), "newTask");
+    let input = document.getElementById("input__title");
+    li.innerHTML = input.value;
+    localStorage.setItem((id++).toString(), input.value);
     ul.appendChild(li);
     count();
+    input.value = "";
 }
 
 function clearStorage() {
