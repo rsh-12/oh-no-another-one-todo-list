@@ -119,7 +119,7 @@ function deleteTask(btn) {
 }
 
 function validateInput(input) {
-    BTN_ADD.disabled = input.value.trim().length < 3;
+    BTN_ADD.disabled = (input.value.trim().length < 3) || (input.value.trim().length > 121);
 }
 
 function isTaskDone(checkbox) {
